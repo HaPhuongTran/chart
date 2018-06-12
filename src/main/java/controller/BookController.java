@@ -5,21 +5,26 @@ import org.springframework.beans.factory.annotation.*;
 import org.springframework.http.*;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.*;
+
 import book.Book;
 import service.BookService;
 
 @Component
 @RestController
+@CrossOrigin
 public class BookController {
 
    @Autowired
    private BookService bookService;
 
    /*---Add new book---*/
-   @PostMapping("/book")
-   public @ResponseBody Book addNewBook (@RequestBody Book book) {
+   @RequestMapping("/book")
+   public @ResponseBody String addNewBook (@RequestParam("title") String title, @RequestParam("author") String author) {
+	   Book book = new Book();
+	   book.setTitle(title);
+	   book.setAuthor(author);
 	   bookService.save(book);
-		return book;
+	   return "added";
    }
 
    /*---Get a book by id---*/
@@ -30,11 +35,11 @@ public class BookController {
    }
 
    /*---get all books---*/
-   @GetMapping("/book")
-   public ResponseEntity<List<Book>> list() {
-      List<Book> books = bookService.list();
-      return ResponseEntity.ok().body(books);
-   }
+//   @RequestMapping("/book")
+//   public ResponseEntity<List<Book>> list() {
+//      List<Book> books = bookService.list();
+//      return ResponseEntity.ok().body(books);
+//   }
 
    /*---Update a book by id---*/
    @PutMapping("/book/{id}")

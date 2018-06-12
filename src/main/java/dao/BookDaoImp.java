@@ -4,12 +4,12 @@ import java.util.List;
 
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.criteria.*;
-
 import org.hibernate.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.*;
-import dao.BookDao;
+
 import book.Book;
+import dao.BookDao;
 
 @Component
 @Repository
@@ -20,7 +20,7 @@ public class BookDaoImp implements BookDao {
 
    @Override
    public long save(Book book) {
-	   entityManagerFactory.unwrap(SessionFactory.class).openSession().save(book);
+	  entityManagerFactory.unwrap(SessionFactory.class).openSession().save(book);
       return book.getId();
    }
 

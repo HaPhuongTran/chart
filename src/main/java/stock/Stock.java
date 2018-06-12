@@ -1,27 +1,31 @@
 package stock;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.*;
 
+import org.springframework.stereotype.Component;
+
+@Component
 @Entity
-@IdClass(Stock.class)
-public class Stock {
+public class Stock implements Serializable {
 	
 	@Id
-	@Column(name="name_Of_Stock")
 	private String name_Of_Stock;
 	
 	@Id
-	@Column(name="date")
 	private Date date;
 	
-	@Column(name="data")
 	private float data;
 	
-	
-	@Column(name="name_Color")
+	@ManyToOne
 	private color name_Color;
+	
+	@ManyToOne
+	private color date_color;
+
+	
 	
 	public String getNameOfStock() {
 		return name_Of_Stock;
@@ -45,9 +49,8 @@ public class Stock {
 	
 	public void setData(float data) {
 		this.data=data;
-	}
-	@ManyToOne
-	@JoinColumn(name="FK_color")
+	} 
+	
 	public color getNameColor() {
 		return name_Color;
 	}

@@ -3,18 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script>
-	var req = new XMLHttpRequest();
-	req.onreadystatechange = function() {
-	    if (this.readyState == 4 && this.status == 200) {
-	     document.getElementById("demo").innerHTML = this.responseText;
-	    }
-  	};
-	req.open("GET", "http://127.0.0.1:8000/book", true);
-	req.send(null);
-</script>
+<script src ="add.js"></script>
 </head>
 <body>
-	<p id="demo"></p>
+		Title: <input type = "text" name= "title" id = "title">
+		Author: <input type = "text" name= "author" id = "author">
+		<button onclick = "add()">add</button>
+
+		<p id="demo"></p>
+		
 </body>
 </html>

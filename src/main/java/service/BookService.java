@@ -8,7 +8,6 @@ import book.Book;
 
 @Component
 public interface BookService {
-
 	   long save(Book book);
 	   Book get(long id);
 	   List<Book> list();
